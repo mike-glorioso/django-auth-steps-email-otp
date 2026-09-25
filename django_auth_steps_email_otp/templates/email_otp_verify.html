@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head><title>Enter your code</title></head>
+<body>
+  <h1>Enter your code</h1>
+  <p>We emailed you a code. Enter it below.</p>
+  {% if non_field_errors %}
+    <div class="error">{{ non_field_errors }}</div>
+  {% endif %}
+  <form method="post">
+    {{ csrf_input }}
+    <div class="field">
+      <label for="id_code">Code from your email</label>
+      {{ form.code }}
+      {% if form.code.errors %}<div class="error">{{ form.code.errors }}</div>{% endif %}
+    </div>
+    <button type="submit">Verify</button>
+  </form>
+  <!--
+    Plain server-rendered resend, matching the rest of this package (no
+    JS anywhere). This form relies on the "request" template context
+    processor (django.template.context_processors.request) being
+    enabled, which it is by default in a standard Django project, to
+    fill in "next". A host app building its own resend UI (e.g. with a
+    JS countdown) should use its own template and its own thin view
+    calling django_auth_steps_email_otp.codes.resend_code()/
+    resend_cooldown_remaining() instead of this form.
+  -->
+  <form method="post" action="{% url 'django_auth_steps_email_otp:resend' %}">
+    {{ csrf_input }}
+    <input type="hidden" name="next" value="{{ request.path }}">
+    <button type="submit">Resend code</button>
+  </form>
+</body>
+</html>

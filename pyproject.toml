@@ -1,12 +1,35 @@
 [project]
 name = "django_auth_steps_email_otp"
-version = "0.0.1"
+version = "1.0.0"
+description = "An email one-time-code enroll/verify step for django_auth_steps."
+readme = "README.md"
 requires-python = ">=3.14.4"
-dependencies = ["Django>=6.1.1"]
+license = {text = "BSD-3-Clause"}
+authors = [{name = "Michael Glorioso", email = "michael.glorioso@glotronic.net"}]
+dependencies = [
+    "Django>=6.1.1",
+    "django_auth_steps @ git+https://github.com/mike-glorioso/django-auth-steps.git@main",
+]
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Framework :: Django",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/mike-glorioso/django-auth-steps_email_otp"
 
 [build-system]
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+exclude = ["django_auth_steps_email_otp.tests", "django_auth_steps_email_otp.tests.*"]
+
+[tool.setuptools.package-data]
+django_auth_steps_email_otp = ["templates/*.html", "py.typed"]
 
 [tool.pyright]
 typeCheckingMode = "strict"

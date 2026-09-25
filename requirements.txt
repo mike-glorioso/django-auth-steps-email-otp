@@ -1,1 +1,2 @@
 Django>=6.1.1
+django_auth_steps @ git+https://github.com/mike-glorioso/django-auth-steps.git@main

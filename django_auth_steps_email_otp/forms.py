@@ -9,5 +9,5 @@ class EmailOTPForm(Form):
         widget=TextInput(attrs={"autocomplete": "one-time-code", "autocapitalize": "characters"}),
     )
 
-    def clean_code(self):
+    def clean_code(self) -> str:
         return self.cleaned_data["code"].strip().upper()
